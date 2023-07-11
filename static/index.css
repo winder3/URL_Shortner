@@ -1,0 +1,85 @@
+.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	overflow: auto; 
+	background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; 
+	height: 50%;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+body {
+	background-color: lightblue;
+  }
+
+.addContent{
+	background-color: #dcdcdc;
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+table, th, td {
+	border:1px solid black;
+  }
+table{
+	width: 90%;
+	margin: 0 auto;
+  	text-align: center;
+}
+table tr:first-child {
+	background-color: #333;
+	color: #f7f7f7;
+  }
+.addBar{
+	text-align: center;
+}
+.openModalBtn{
+	float: right;
+	margin-right: 10%;
+	margin-top: 2%;
+	background-color: #5eeb34;
+	border: none;
+	color:#f7f7f7 ;
+	text-align: center;
+}
+.copyBtn{
+	background-color: #f0e800;
+	color: #f7f7f7;
+	border: none;
+}
+.delBtn{
+	background-color: #ff0000;
+	color: #f7f7f7;
+	border: none;
+}
+.editBtn{
+	background-color: #0000ff;
+	color: #f7f7f7;
+	border: none;
+}

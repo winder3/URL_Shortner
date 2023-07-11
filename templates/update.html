@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Update Link {% endblock %}
+
+{% block body %}  
+<div class="updateContent">
+	
+	<h2 class="updateBar">Update Link</h2>
+
+	<form action="{{ url_for('update', id=link.id) }}" method="POST">
+		<div>
+			<label>Title</label>
+			<input type="text" name="title" value="{{ link.title }}" required>
+		</div>
+		<div>
+			<label>Description</label>
+			<textarea maxlength="200" rows="8" name="desc">{{ link.desc }}</textarea>
+		</div>
+		<div>
+			<label>Link</label>
+			<input type="text" name="longLink" value="{{ link.long }}" required>
+		</div>
+		<div>
+			<button type="submit">Update</button>
+		</div>
+	</form>
+</div>
+
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+
+<!-- Add the following JavaScript code to handle the close button for the update modal -->
+<script>
+  var modalEdit = document.getElementById("myModalEdit");
+  var spanEdit = document.getElementsByClassName("close");
+
+  for (var i = 0; i < spanEdit.length; i++) {
+    spanEdit[i].onclick = function() {
+      modalEdit.style.display = "none";
+    };
+  }
+</script>
+
+{% endblock %}

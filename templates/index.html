@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+
+{% block title %} Flask CRUD URL Shortner {% endblock %}
+
+{% block body %}  
+
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<div class="addContent">
+	<h2 class="addBar">Manage Link
+	<button id="openModalBtn" class="openModalBtn">Add Link</button>
+		<div id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+					<form action="{{ url_for('insert')}}" method="POST">
+						<div>
+							<label>Title</label>
+							<input type="text" name="title" required>
+						</div>
+						<div>
+							<label>Description</label>
+							<textarea maxlength="200" rows="8" name="desc"></textarea>
+						</div>
+						<div>
+							<label>Link</label>
+							<input type="text" name="longLink"  required>
+						</div>
+						<div>
+							<button type="submit">Add</button>
+						</div>
+					</form>
+			</div>
+		</div>
+	</h2>
+
+	{% with messages = get_flashed_messages() %}
+
+		{% if messages%}
+
+			{% for message in messages %}
+				{{message}}
+			{% endfor %}
+		{%endif%}
+	{% endwith %}
+
+
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Link</th>
+			<th>Actions</th>
+		</tr>
+		{% for link in links %}
+		<tr>
+			<td>{{link.title}}</td>
+			<td>{{link.desc}}</td>
+			<td>http://127.0.0.1:5000/{{link.short}}</td>
+			<td>
+				<button class="copyBtn" onclick="copyToClipboard('{{ link.short }}')">Copy</button>
+
+				<form action="{{ url_for('delete', id=link.id) }}" method="post">
+					<button type="submit" class="delBtn">Delete</button>
+				</form>
+	
+				<button id="openModalEditBtn" class="editBtn">Edit</button>
+					<div id="myModalEdit" class="modal">
+						<div class="modal-content">
+							<span class="close">&times;</span>
+								<form action="{{ url_for('update', id=link.id) }}" method="POST">
+									<div>
+										<label>Title</label>
+										<input type="text" name="title" value="{{link.title}}" required>
+									</div>
+									<div>
+										<label>Description</label>
+										<textarea maxlength="200" rows="8" name="desc">{{link.desc}}</textarea>
+									</div>
+									<div>
+										<label>Link</label>
+										<input type="text" name="longLink" value="{{link.long}}" required>
+									</div>
+									<div>
+										<button type="submit">Update</button>
+									</div>
+								</form>
+							
+						</div>
+					</div>
+
+			</td>
+		</tr>
+		{% endfor %}
+
+
+
+
+		<script src="{{ url_for('static', filename='index.js') }}"></script>	
+</div>
+
+
+
+
+{% endblock %}
